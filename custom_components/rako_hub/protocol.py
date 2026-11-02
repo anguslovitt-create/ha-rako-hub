@@ -88,10 +88,12 @@ def parse_channel_row(fields: list[str]) -> tuple[int, str, str, Channel]:
     """Rows may or may not carry the leading 'QUERY' token; normalise."""
     if fields and fields[0] == "QUERY":
         fields = fields[1:]
-    # ROOM_ID,ROOM_TITLE,ROOM_TYPE,CHANNEL_ID,CHANNEL_TITLE,CHANNEL_TYPE,S1..S16
+    # Documented (fw 3.1):  ROOM_ID,ROOM_TITLE,ROOM_TYPE,CHANNEL_ID,CHANNEL_TITLE,CHANNEL_TYPE,S1..S16
+    # Observed (fw 3.9):    ROOM_ID,ROOM_TITLE,ROOM_TYPE,ROOM_MODE,CHANNEL_ID,CHANNEL_TITLE,CHANNEL_TYPE,S1..S16
     room_id = int(fields[0])
-    levels = [int(x) for x in fields[6:22] if x != ""]
-    ch = Channel(channel_id=int(fields[3]), title=fields[4], type=fields[5], scene_levels=levels)
+    off = 4 if (len(fields) >= 23 or not fields[3].lstrip("-").isdigit()) else 3
+    levels = [int(x) for x in fields[off + 3:off + 19] if x != ""]
+    ch = Channel(channel_id=int(fields[off]), title=fields[off + 1], type=fields[off + 2], scene_levels=levels)
     return room_id, fields[1], fields[2], ch
 
 
