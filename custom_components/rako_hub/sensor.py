@@ -58,7 +58,8 @@ class RakoRoomSceneSensor(SensorEntity):
         self._c = coordinator
         self._rid = room_id
         room = coordinator.rooms[room_id]
-        self._attr_name = f"{room.title} scene"
+        suffix = "scene" if room.type.upper() == "LIGHT" else f"{room.type.lower()} scene"
+        self._attr_name = f"{room.title} {suffix}"
         self._attr_unique_id = f"{coordinator.entry_id}_room_{room_id}_scene"
         self._attr_device_info = hub_device_info(coordinator)
 
