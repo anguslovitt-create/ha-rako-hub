@@ -1,13 +1,13 @@
 {
   "domain": "rako_hub",
   "name": "Rako Hub (observability)",
-  "codeowners": ["@anguslovitt"],
+  "codeowners": ["@anguslovitt-create"],
   "config_flow": true,
   "dependencies": [],
-  "documentation": "https://github.com/anguslovitt/ha-rako-hub",
+  "documentation": "https://github.com/anguslovitt-create/ha-rako-hub",
   "integration_type": "hub",
   "iot_class": "local_push",
-  "issue_tracker": "https://github.com/anguslovitt/ha-rako-hub/issues",
+  "issue_tracker": "https://github.com/anguslovitt-create/ha-rako-hub/issues",
   "requirements": [],
-  "version": "0.1.0"
+  "version": "0.1.1"
 }
