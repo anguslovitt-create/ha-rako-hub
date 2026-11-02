@@ -1,0 +1,13 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect to the Rako Hub",
+        "description": "The hub's TCP API (port 9762) must be reachable from Home Assistant. Firmware 3.1.0 or later.",
+        "data": { "host": "Hub IP address", "port": "Port" }
+      }
+    },
+    "error": { "cannot_connect": "Could not connect to the hub (check the IP, and that the hub firmware is 3.1.0+)." },
+    "abort": { "already_configured": "This hub is already configured." }
+  }
+}

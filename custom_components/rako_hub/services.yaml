@@ -1,0 +1,45 @@
+set_scene:
+  name: Set scene
+  description: Select a Rako scene in a room (0 = off). Channel 0 = whole room.
+  fields:
+    room:
+      required: true
+      selector: { number: { min: 1, max: 255, mode: box } }
+    scene:
+      required: true
+      selector: { number: { min: 0, max: 16, mode: box } }
+    channel:
+      selector: { number: { min: 0, max: 255, mode: box } }
+set_level:
+  name: Set level
+  description: Set a channel to a level 0-255.
+  fields:
+    room: { required: true, selector: { number: { min: 1, max: 255, mode: box } } }
+    channel: { required: true, selector: { number: { min: 1, max: 255, mode: box } } }
+    level: { required: true, selector: { number: { min: 0, max: 255, mode: slider } } }
+fade:
+  name: Fade
+  description: Start/stop a fade on a room or channel.
+  fields:
+    room: { required: true, selector: { number: { min: 1, max: 255, mode: box } } }
+    channel: { selector: { number: { min: 0, max: 255, mode: box } } }
+    direction: { required: true, selector: { select: { options: [up, down, stop] } } }
+set_rgb:
+  name: Set RGB
+  description: Set an RGB channel colour (white is derived by the hub for RGBW).
+  fields:
+    room: { required: true, selector: { number: { min: 1, max: 255, mode: box } } }
+    channel: { selector: { number: { min: 0, max: 255, mode: box } } }
+    red: { required: true, selector: { number: { min: 0, max: 255 } } }
+    green: { required: true, selector: { number: { min: 0, max: 255 } } }
+    blue: { required: true, selector: { number: { min: 0, max: 255 } } }
+store_scene:
+  name: Store scene (experimental)
+  description: Ask the hub to store the room's current levels as the given scene. Not in Rako's public API; may be rejected.
+  fields:
+    room: { required: true, selector: { number: { min: 1, max: 255, mode: box } } }
+    scene: { required: true, selector: { number: { min: 1, max: 16, mode: box } } }
+    channel: { selector: { number: { min: 0, max: 255, mode: box } } }
+refresh:
+  name: Refresh structure
+  description: Re-read rooms, channels, stored scene levels and current levels from the hub.
